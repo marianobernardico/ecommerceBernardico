@@ -1,6 +1,8 @@
 import NavBar from "./components/NavBar";
-import logo from './logo.svg';
 import './App.css';
+import ItemListConteiner from "./components/ItemListConteiner";
+
+
 
 function App() {
   return (
@@ -8,8 +10,7 @@ function App() {
       <NavBar/>
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>Mariano's ecommerce 🤣</p>
+          <ItemListConteiner getting = {"Coming soon 🔜"}/>
         </header>
       </div>
     </div>
