@@ -5,15 +5,15 @@ import CartWidget from './CartWidget';
 const NavBar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-ligth bg-ligth">
-        <span class="navbar-brand">Inicio</span>
+        <span className="navbar-brand">Inicio</span>
         <CartWidget count = {4}/>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/marianobernardico/ecommerceBernardico"> Link Github</a>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                    <a className="nav-link" href="https://github.com/marianobernardico/ecommerceBernardico"> Link Github</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
+                <li className="nav-item">
+                    <a className="nav-link" href="#">Login</a>
                 </li>
             </ul>
         </div>
