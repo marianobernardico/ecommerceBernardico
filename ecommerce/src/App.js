@@ -18,8 +18,6 @@ function App() {
     setCount(count = count +countItems)
   };
 
-
-
   return (
     <div>  
       <NavBar count={count}/>
