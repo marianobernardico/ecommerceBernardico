@@ -4,15 +4,10 @@ import Item from './Item';
 export default function ItemList({items}) {
 
     useEffect(() =>{
-
     },[]);
-
     return (
     <>
-    {items.map((item)=>{
-        <p>item.title</p>
-       
-    })}
+    {items?.map((item)=><Item item = {item}/>)}
     </>
   )
 }

@@ -1,42 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import ItemList from './ItemList';
 
 export default function ItemListConteiner({getting}) {
 
   const [itemList, setItemList] = useState([]);
   useEffect(() => {
-    console.log("ItemListConteiner")
-    const items = new Promise((res, rej) => {
-      setTimeout(()=>{
-        res = [
-          {title: "Item 1", img: "imagen 🤯", description: "hehe", stock: 5},
-          {title: "Item 2", img: "imagen 🤯", description: "hehe", stock: 2},
-          {title: "Item 3", img: "imagen 🤯", description: "hehe", stock: 5}
-        ]
-        console.log(res)
-      }, 1000);
-    });
-
-    console.log("acaaaa")
-    console.log(itemList);
-    items.then((result)=>{
-      console.log("then :v")
-      console.log(result);
-      setItemList(result);
-    });
-    /*.catch((error)=>{
-      console.log(error);
-    });*/
+    fetch("https://629ea27e461f8173e4d6a508.mockapi.io/api/mock_items/itemsmock")
+    .then(res => res.json())
+    .then(res =>setItemList(res))
+    .catch(error => console.log(error));
     
   }, []);
-  
   
   return (
     <>
     <p>{getting}</p>
     <ItemList items={itemList}/>
     </>
-    
 
   )
 }
