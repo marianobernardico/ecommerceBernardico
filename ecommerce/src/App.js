@@ -15,10 +15,8 @@ function App() {
   }, []);
 
   function onAdd(countItems) {
-    setCount(count = count +countItems)
+    setCount(count = count + countItems)
   };
-
-
 
   return (
     <div>  
