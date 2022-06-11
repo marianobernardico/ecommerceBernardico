@@ -1,16 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CartWidget from './CartWidget';
 
-const NavBar = () => {
+
+const NavBar = ({count}) => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <span class="navbar-brand">Inicio</span>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/marianobernardico/ecommerceBernardico"> Link Github</a>
+        <nav className="navbar navbar-expand-lg navbar-ligth bg-ligth">
+        <span className="navbar-brand">Inicio</span>
+        <CartWidget count = {count}/>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                    <a className="nav-link" href="https://github.com/marianobernardico/ecommerceBernardico"> Link Github</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
+                <li className="nav-item">
+                    <a className="nav-link" href="#">Login</a>
                 </li>
             </ul>
         </div>
