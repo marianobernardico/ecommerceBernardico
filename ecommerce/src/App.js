@@ -3,6 +3,7 @@ import './App.css';
 import ItemListConteiner from "./components/ItemListConteiner";
 import ItemCount from "./components/ItemCount";
 import { useEffect, useState } from "react";
+import {ItemDetailConteiner} from './components/ItemDetailConteiner';
 
 
 
@@ -23,8 +24,7 @@ function App() {
       <NavBar count={count}/>
       <div className="App">
         <header className="App-header">
-          <ItemListConteiner getting = {"Primer prueba contador"}/>
-          <ItemCount stock = {stock} initial= {1} onAdd={onAdd}/>
+          <ItemDetailConteiner/>
         </header>
       </div>
     </div>

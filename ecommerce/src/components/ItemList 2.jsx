@@ -7,7 +7,7 @@ export default function ItemList({items}) {
     },[]);
     return (
     <>
-    {items.map((item)=><Item item = {item}/>)}
+    {items?.map((item)=><Item item = {item}/>)}
     </>
   )
 }
