@@ -1,14 +1,14 @@
 import NavBar from "./components/NavBar";
 import './App.css';
-import ItemListConteiner from "./components/ItemListConteiner";
-import ItemCount from "./components/ItemCount";
 import { useEffect, useState } from "react";
-import {ItemDetailConteiner} from './components/ItemDetailConteiner';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ItemListConteiner from "./components/ItemListConteiner";
+import ItemDetail from './components/ItemDetail';
+
 
 
 
 function App() {
-  const stock = 10;
   var [count, setCount] = useState();
 
   useEffect(()=> {
@@ -20,14 +20,18 @@ function App() {
   };
 
   return (
-    <div>  
-      <NavBar count={count}/>
-      <div className="App">
-        <header className="App-header">
-          <ItemDetailConteiner/>
-        </header>
-      </div>
-    </div>
+    <>
+    <BrowserRouter>
+    <NavBar count={count}/>
+      <Routes>
+        <Route path= "/" element={<ItemListConteiner getting={"Bienvenide!!"}/>}/>
+        <Route path= "/category/:id" element={<ItemListConteiner/>}/>
+        <Route path= "/item/:id" element={<ItemDetail/>}/>
+      </Routes>
+    </BrowserRouter>
+    
+    </>
+
     
   );
 }

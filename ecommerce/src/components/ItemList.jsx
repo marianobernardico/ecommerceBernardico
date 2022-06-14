@@ -7,7 +7,9 @@ export default function ItemList({items}) {
     },[]);
     return (
     <>
-    {items.map((item)=><Item item = {item}/>)}
+    <div className="card-group">
+      {items.map((item)=> <div> <Item item = {item}/> </div>)}
+    </div>
     </>
   )
 }
