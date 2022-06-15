@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Navbar, Container, Nav, NavDropdown} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import CartWidget from './CartWidget';
 
@@ -6,25 +7,26 @@ import CartWidget from './CartWidget';
 const NavBar = ({count}) => {
     return (
         <>
-        <nav className="navbar navbar-expand-lg"  style={{backgroundColor: "#E3DC83"}}>
-            <div className="container-fluid">
-                <div className="navbar-brand">
-                <img src="https://img.icons8.com/ios-filled/50/undefined/m-key.png" width="30" className="logo"/>
-                </div>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div className="navbar-nav ml-auto">
-                    <Link className="nav-link" to= "/">Inicio</Link>
-                    <Link className="nav-link" to= {`/category/${1}`}>Smartphone</Link>
-                    <Link className="nav-link" to= {`/category/${2}`}>PC</Link>
-                    <Link className="nav-link" to= {`/category/${3}`}>Tablets</Link>
-                </div>
-            </div>
-            <div className="nav-link" style={{float: "right"}}><CartWidget count = {count}/></div>
-            </div>
-        </nav>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Container>
+            <Navbar.Brand><Link className="nav-link" to= "/">Inicio</Link></Navbar.Brand>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+                <Nav className="me-auto">
+                <NavDropdown title="Categorias" id="collasible-nav-dropdown">
+                    <NavDropdown.Item><Link className="nav-link" to= {`/category/${1}`} style={{color : "black"}}>Smartphone</Link></NavDropdown.Item>
+                    <NavDropdown.Item><Link className="nav-link" to= {`/category/${2}`} style={{color : "black"}}>PC</Link></NavDropdown.Item>
+                    <NavDropdown.Item><Link className="nav-link" to= {`/category/${3}`} style={{color : "black"}}>Tablets</Link></NavDropdown.Item>
+                </NavDropdown>
+                </Nav>
+                <Nav>
+                <Nav.Link >
+                    <CartWidget count = {count}/>
+                </Nav.Link>
+                </Nav>
+            </Navbar.Collapse>
+            </Container>
+        </Navbar>
         </>
         
     );
