@@ -14,7 +14,7 @@ export default function Item({item}) {
                 <h5 className="card-title" style={ {color : "black"}}>{id}</h5>
                 <p className="card-text" style={ {color : "black"}}>{title}</p>
                 <p className="card-text" style={ {color : "black"}}>{stock}</p>
-                <Link className="btn btn-blue"  role="button" to= {`/item/${id}`} style={ {color : "black"}}>Ver detalle</Link>
+                <Link className="btn btn-primary"  role="button" to= {`/item/${id}`} style={ {color : "white"}}>Ver detalle</Link>
             </div>
         </div><br/>
     </>
