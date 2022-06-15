@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import Item from './Item';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Row, Col} from 'react-bootstrap';
 
 export default function ItemList({items}) {
 
@@ -7,9 +9,13 @@ export default function ItemList({items}) {
     },[]);
     return (
     <>
-    <div className="card-group">
-      {items.map((item)=> <div> <Item item = {item}/> </div>)}
-    </div>
+    <Row xs={1} md={3} className="g-4">
+      {items.map((item)=> (
+        <Col>
+          <Item item = {item}/>
+        </Col>
+      ))}
+    </Row>
     </>
   )
 }

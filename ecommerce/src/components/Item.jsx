@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import {Link} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Card from 'react-bootstrap/Card';
 
 export default function Item({item}) {
 
@@ -9,14 +11,21 @@ export default function Item({item}) {
 
     return (
     <>
-        <div className="card" style={ {width: "18rem"}}>
-            <div className="card-body">
-                <h5 className="card-title" style={ {color : "black"}}>{id}</h5>
-                <p className="card-text" style={ {color : "black"}}>{title}</p>
-                <p className="card-text" style={ {color : "black"}}>{stock}</p>
-                <Link className="btn btn-primary"  role="button" to= {`/item/${id}`} style={ {color : "white"}}>Ver detalle</Link>
-            </div>
-        </div><br/>
+    <Card>
+        <Card.Body>
+        <Card.Title>{title}</Card.Title>
+        <Card.Text>
+            Id del producto: {id}
+        </Card.Text>
+        <Card.Text>
+            <Link className="btn btn-primary"  role="button" to= {`/item/${id}`} style={ {color : "white"}}>Ver detalle</Link>
+        </Card.Text>
+        </Card.Body>
+        <Card.Footer>
+        <small className="text-muted">Stock: {stock}</small>
+        </Card.Footer>
+    </Card>
+       
     </>
   )
 }

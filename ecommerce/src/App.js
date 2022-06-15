@@ -4,9 +4,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ItemListConteiner from "./components/ItemListConteiner";
 import ItemDetail from './components/ItemDetail';
-
-
-
+import Cart from "./components/Cart";
 
 function App() {
   var [count, setCount] = useState();
@@ -26,7 +24,8 @@ function App() {
       <Routes>
         <Route path= "/" element={<ItemListConteiner getting={"Bienvenide!!"}/>}/>
         <Route path= "/category/:id" element={<ItemListConteiner/>}/>
-        <Route path= "/item/:id" element={<ItemDetail/>}/>
+        <Route path= "/item/:id" element={<ItemDetail onAdd={onAdd}/>}/>
+        <Route path= "/cart" element={<Cart count={count}/>}/>
       </Routes>
     </BrowserRouter>
     
