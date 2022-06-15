@@ -8,9 +8,9 @@ const NavBar = ({count}) => {
         <>
         <nav className="navbar navbar-expand-lg"  style={{backgroundColor: "#E3DC83"}}>
             <div className="container-fluid">
-                <a className="navbar-brand" href="#">
+                <div className="navbar-brand">
                 <img src="https://img.icons8.com/ios-filled/50/undefined/m-key.png" width="30" className="logo"/>
-                </a>
+                </div>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
                 </button>
@@ -22,7 +22,7 @@ const NavBar = ({count}) => {
                     <Link className="nav-link" to= {`/category/${3}`}>Tablets</Link>
                 </div>
             </div>
-            <a className="nav-link" style={{float: "right"}}><CartWidget count = {count}/></a>
+            <div className="nav-link" style={{float: "right"}}><CartWidget count = {count}/></div>
             </div>
         </nav>
         </>
