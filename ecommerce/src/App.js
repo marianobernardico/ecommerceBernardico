@@ -14,16 +14,15 @@ function App() {
   useEffect(()=> {
   }, []);
 
-
   return (
     <>
     <CartContext>
-    <NavBar count={cartCount}/>
+    <NavBar/>
       <Routes>
         <Route path= "/" element={<ItemListConteiner getting={"Bienvenide!!"}/>}/>
         <Route path= "/category/:id" element={<ItemListConteiner/>}/>
-        <Route path= "/item/:id" element={<ItemDetail onAdd={onAdd}/>}/>
-        <Route path= "/cart" element={<Cart count={cartCount}/>}/>
+        <Route path= "/item/:id" element={<ItemDetail/>}/>
+        <Route path= "/cart" element={<Cart/>}/>
       </Routes>
     </CartContext>
     </>

@@ -1,19 +1,32 @@
 import React from 'react'
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import { useParams } from 'react-router-dom';
 import ItemCount from './ItemCount';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card, Button} from 'react-bootstrap';
+import {MyContext} from '../context/CartContext';
 
-export default function ItemDetail({onAdd}) {
+export default function ItemDetail() {
     const {id} = useParams();
     const [item, setItem] = useState([]);
+    const { cartCount, setItemsCart} = useContext(MyContext);
+
 
     useEffect(() => {
         fetch("https://629ea27e461f8173e4d6a508.mockapi.io/api/mock_items/itemsmock")
         .then(res => res.json())
-        .then(res => setItem(res.find(x => x.id == id)));
+        .then(res => {
+          setItem(res.find(x => x.id == id));
+ 
+        });
       }, [id]);
+
+      useEffect(() => {
+        setItemsCart(item);
+      }, []);
+
+
+      setItemsCart(item);
 
     return (
     <>
@@ -26,7 +39,7 @@ export default function ItemDetail({onAdd}) {
           <Card.Title>Descripcion: {item?.description}</Card.Title>
           <Card.Text>
             Categoria: {item?.category}
-            <ItemCount stock= {item?.stock} initial={1} onAdd={onAdd}/>
+            <ItemCount item= {item} initial={1}/>
           </Card.Text>
         </Card.Body>
         <Card.Footer className="text-muted">Stock: {item?.stock}</Card.Footer>

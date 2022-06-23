@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import {useEffect, useState, useContext} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card, Button }from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import {MyContext} from '../context/CartContext';
 
-export default function ItemCount({stock, initial, onAdd}) {
+export default function ItemCount({item, initial}) {
 
     var [count, setCount] = useState();
+    const {onAdd, addItem} = useContext(MyContext);
 
     useEffect(() => { 
         setCount(initial);
@@ -15,14 +17,15 @@ export default function ItemCount({stock, initial, onAdd}) {
         if(count < 0){
             setCount(1);
         };
-        if(count>stock){
+        if(count>item.stock){
             alert("No queda mas stock :(")
-            setCount(stock);
+            setCount(item.stock);
         }
     }, [count]);
 
+
     function addToCart(){
-        onAdd(count);
+        addItem(item, count);
         setCount(1);
         return ;
     };

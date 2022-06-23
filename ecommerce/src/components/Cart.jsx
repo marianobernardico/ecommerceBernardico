@@ -1,8 +1,13 @@
 import React from 'react'
+import {useContext} from 'react';
+import {MyContext} from '../context/CartContext';
 
-export default function Cart({count}) {
+export default function Cart() {
+  const { cartCount, itemsCart } = useContext(MyContext);
 
   return (
-    <div>Cart with {count} elements</div>
+    <>
+      <div>{JSON.stringify({itemsCart})}</div>
+    </>
   )
 }
