@@ -4,16 +4,27 @@ import { useParams } from 'react-router-dom';
 import ItemCount from './ItemCount';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card} from 'react-bootstrap';
+import {doc, getDoc, getFirestore} from 'firebase/firestore';
 
 export default function ItemDetail() {
     const {id} = useParams();
-    const [item, setItem] = useState([]);
+    const [item, setItem] = useState({});
+
+    const collection = 'products';
+    const db = getFirestore();
+
+    const docIphone = doc( db, collection, id);
+    
 
     useEffect(() => {
-        fetch("https://629ea27e461f8173e4d6a508.mockapi.io/api/mock_items/itemsmock")
-        .then(res => res.json())
-        .then(res => {
-          setItem(res.find(x => x.id == id));
+
+        getDoc(docIphone).then((res)=> {
+          if(res.exists()){
+            setItem({...res.data(), id: res.id});
+          }else{
+            console.log("no se encontro el producto")
+          }
+    
         });
       }, [id]);
 

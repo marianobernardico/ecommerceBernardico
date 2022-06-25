@@ -7,7 +7,6 @@ export default function CartContext({ children }) {
     const [itemsCart, setItemsCart] = useState([]);
 
     useEffect(()=> {
-      console.log(itemsCart)
       itemsCart.map((item)=> (
         cartCount += item.quantity
       ));
@@ -27,11 +26,8 @@ export default function CartContext({ children }) {
         };
       let pos = isInCart(item?.id);
       if(pos == -1){
-        console.log("primera vez:" + pos);
         setItemsCart([...itemsCart, newItem]);
-        console.log(itemsCart.length)
       } else {
-        console.log("ya existe :" + pos)
           let auxItemsCart = [...itemsCart];
           auxItemsCart[pos].quantity +=  quantity;
           setItemsCart(auxItemsCart);
@@ -61,10 +57,7 @@ export default function CartContext({ children }) {
     }
 
     const restCant =(id)=> {
-      console.log("restCant")
-
       let pos = isInCart(id)
-      console.log(pos)
       let auxItemsCart = [...itemsCart];
       if(auxItemsCart[pos].quantity != 1){
         auxItemsCart[pos].quantity --;
