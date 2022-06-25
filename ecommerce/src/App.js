@@ -1,33 +1,32 @@
 import NavBar from "./components/NavBar";
 import './App.css';
+import {useEffect, useContext, useState} from 'react';
+import { Routes, Route } from "react-router-dom";
 import ItemListConteiner from "./components/ItemListConteiner";
-import ItemCount from "./components/ItemCount";
-import { useEffect, useState } from "react";
-import {ItemDetailConteiner} from './components/ItemDetailConteiner';
-
+import ItemDetail from './components/ItemDetail';
+import Cart from "./components/Cart";
+import CartContext, { MyContext } from "./context/CartContext";
 
 
 function App() {
-  const stock = 10;
-  var [count, setCount] = useState();
+  const { cartCount, onAdd } = useContext(MyContext);
 
   useEffect(()=> {
-    setCount(0)
   }, []);
 
-  function onAdd(countItems) {
-    setCount(count = count + countItems)
-  };
-
   return (
-    <div>  
-      <NavBar count={count}/>
-      <div className="App">
-        <header className="App-header">
-          <ItemDetailConteiner/>
-        </header>
-      </div>
-    </div>
+    <>
+    <CartContext>
+    <NavBar/>
+      <Routes>
+        <Route path= "/" element={<ItemListConteiner getting={"Bienvenide!!"}/>}/>
+        <Route path= "/category/:id" element={<ItemListConteiner/>}/>
+        <Route path= "/item/:id" element={<ItemDetail/>}/>
+        <Route path= "/cart" element={<Cart/>}/>
+      </Routes>
+    </CartContext>
+    </>
+
     
   );
 }

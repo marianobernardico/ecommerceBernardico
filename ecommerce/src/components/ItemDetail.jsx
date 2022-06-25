@@ -1,24 +1,49 @@
 import React from 'react'
-import {useEffect} from 'react';
+import {useEffect, useState, useContext} from 'react';
+import { useParams } from 'react-router-dom';
+import ItemCount from './ItemCount';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Card, Button} from 'react-bootstrap';
+import {MyContext} from '../context/CartContext';
 
-export default function ItemDetail({itemDetail}) {
+export default function ItemDetail() {
+    const {id} = useParams();
+    const [item, setItem] = useState([]);
+    const { cartCount, setItemsCart} = useContext(MyContext);
 
-  return (
+
+    useEffect(() => {
+        fetch("https://629ea27e461f8173e4d6a508.mockapi.io/api/mock_items/itemsmock")
+        .then(res => res.json())
+        .then(res => {
+          setItem(res.find(x => x.id == id));
+ 
+        });
+      }, [id]);
+
+      useEffect(() => {
+        setItemsCart(item);
+      }, []);
+
+
+      setItemsCart(item);
+
+    return (
     <>
-    <div className="card mb-3">
-        <div className="row no-gutters">
-            <div class="col-md-4">
-            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_745035-MLA46195705760_052021-F.webp" style={{height: "600px", width: "420px"}}/>
-            </div>
-            <div className="col-md-8">
-            <div className="card-body" style={{color:"black",height: "700px", width: "800px"}}>
-                <h1 className="card-title" style={{height: "100px"}}>{itemDetail?.title}</h1>
-                <p className="card-text" style={{height: "100px"}}>{itemDetail?.description}</p>
-                <p className="card-text" style={{height: "100px"}}><small class="text-muted">Stock: {itemDetail?.stock}</small></p>
-            </div>
-            </div>
-        </div>
-    </div> 
+      <Card style={{ width: '25rem' }}>
+        <Card.Header>{item?.title}</Card.Header>
+        <Card.Body>
+          <Card.Title> 
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_745035-MLA46195705760_052021-F.webp" style={{height: "300px", width: "220px"}}/>
+          </Card.Title>
+          <Card.Title>Descripcion: {item?.description}</Card.Title>
+          <Card.Text>
+            Categoria: {item?.category}
+            <ItemCount item= {item} initial={1}/>
+          </Card.Text>
+        </Card.Body>
+        <Card.Footer className="text-muted">Stock: {item?.stock}</Card.Footer>
+      </Card>
     </>
   )
 }

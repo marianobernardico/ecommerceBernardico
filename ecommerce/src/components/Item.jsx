@@ -1,21 +1,31 @@
 import React, { useEffect } from 'react'
+import {Link} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Card from 'react-bootstrap/Card';
 
 export default function Item({item}) {
 
+    const {id,title,stock} = item;
     useEffect(() =>{
     },[]);
-    console.log("item")
 
     return (
     <>
-        <div className="card" style={ {width: "18rem"}}>
-            <div className="card-body">
-                <h5 className="card-title" style={ {color : "black"}}>{item.id}</h5>
-                <p className="card-text" style={ {color : "black"}}>{item.title}</p>
-                <p className="card-text" style={ {color : "black"}}>{item.stock}</p>
-                <button className="btn btn-primary" >Agregar </button><br/>
-            </div>
-        </div><br/>
+    <Card>
+        <Card.Body>
+        <Card.Title>{title}</Card.Title>
+        <Card.Text>
+            Id del producto: {id}
+        </Card.Text>
+        <Card.Text>
+            <Link className="btn btn-primary"  role="button" to= {`/item/${id}`} style={ {color : "white"}}>Ver detalle</Link>
+        </Card.Text>
+        </Card.Body>
+        <Card.Footer>
+        <small className="text-muted">Stock: {stock}</small>
+        </Card.Footer>
+    </Card>
+       
     </>
   )
 }
