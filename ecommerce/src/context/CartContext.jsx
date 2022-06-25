@@ -6,51 +6,75 @@ export default function CartContext({ children }) {
     var [cartCount, setCartCount] = useState(0);
     const [itemsCart, setItemsCart] = useState([]);
 
-
     useEffect(()=> {
-        setCartCount(0);
-      }, []);
-      
-    
-    
-      function isInCart(id) {
-        if(Array.isArray(itemsCart)){
-            var someInCart = itemsCart.some(x => x.item.id == id)
-        }
-        return someInCart != undefined;
-    };
+      console.log(itemsCart)
+      itemsCart.map((item)=> (
+        cartCount += item.quantity
+      ));
+      setCartCount(cartCount);
+    }, [itemsCart]);
 
-    function addItem(item, quantity) {
-        const newItem = {item,
+    const isInCart = (id) => {
+      if(Array.isArray(itemsCart)){
+        var someInCart = itemsCart.findIndex(item => item.id === id)
+      }
+      return someInCart;
+    }
+
+    const  addItem = (item, quantity) => {
+      const newItem = {...item,
             quantity,
         };
-        if(isInCart(newItem.item.id)){
-            console.log("adentro");
-            const findProduct = itemsCart.find(item => item.id === newItem.id);
-            const productIndex = itemsCart.indexOf(findProduct);
-            itemsCart[productIndex].quantity += quantity
-            setItemsCart(itemsCart);
-            setCartCount(itemsCart[productIndex].quantity)
-            console.log(itemsCart)
-
-          } else {
-            setCartCount(cartCount = cartCount + quantity)
-            itemsCart.quantity = cartCount;
-            console.log(itemsCart);
-          }
+      let pos = isInCart(item?.id);
+      if(pos == -1){
+        console.log("primera vez:" + pos);
+        setItemsCart([...itemsCart, newItem]);
+        console.log(itemsCart.length)
+      } else {
+        console.log("ya existe :" + pos)
+          let auxItemsCart = [...itemsCart];
+          auxItemsCart[pos].quantity +=  quantity;
+          setItemsCart(auxItemsCart);
+      }
 
     };
-
-    function removeItem(itemId) {
+   
+    const removeItem = (id) => {
+      setItemsCart(itemsCart.filter(item=>item.id !== id));
+      if(itemsCart.length ==0){
+        setCartCount(0);
+      }
     };
 
-    function clear() {
+    const clear = () => {
         setCartCount(0);
         setItemsCart([]);
     };
 
+    const sumCant =(id)=> {
+      let pos = isInCart(id)
+      let auxItemsCart = [...itemsCart];
+      if(auxItemsCart[pos].stock > auxItemsCart[pos].quantity){
+        auxItemsCart[pos].quantity ++;
+        setItemsCart(auxItemsCart);
+      }
+    }
+
+    const restCant =(id)=> {
+      console.log("restCant")
+
+      let pos = isInCart(id)
+      console.log(pos)
+      let auxItemsCart = [...itemsCart];
+      if(auxItemsCart[pos].quantity != 1){
+        auxItemsCart[pos].quantity --;
+        setItemsCart(auxItemsCart);
+      }
+     
+  }
+
 
     return (
-        <MyContext.Provider value={{cartCount,itemsCart, addItem, removeItem, clear, isInCart, setItemsCart}}>{children}</MyContext.Provider>
+        <MyContext.Provider value={{cartCount,itemsCart, addItem, removeItem, clear, sumCant, restCant, setCartCount}}>{children}</MyContext.Provider>
   )
 }

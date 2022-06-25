@@ -3,30 +3,19 @@ import {useEffect, useState, useContext} from 'react';
 import { useParams } from 'react-router-dom';
 import ItemCount from './ItemCount';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Card, Button} from 'react-bootstrap';
-import {MyContext} from '../context/CartContext';
+import {Card} from 'react-bootstrap';
 
 export default function ItemDetail() {
     const {id} = useParams();
     const [item, setItem] = useState([]);
-    const { cartCount, setItemsCart} = useContext(MyContext);
-
 
     useEffect(() => {
         fetch("https://629ea27e461f8173e4d6a508.mockapi.io/api/mock_items/itemsmock")
         .then(res => res.json())
         .then(res => {
           setItem(res.find(x => x.id == id));
- 
         });
       }, [id]);
-
-      useEffect(() => {
-        setItemsCart(item);
-      }, []);
-
-
-      setItemsCart(item);
 
     return (
     <>
