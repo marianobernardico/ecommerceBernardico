@@ -47,7 +47,7 @@ export default function CartContext({ children }) {
         setItemsCart([]);
     };
 
-    const sumCant =(id)=> {
+    const sumCount =(id)=> {
       let pos = isInCart(id)
       let auxItemsCart = [...itemsCart];
       if(auxItemsCart[pos].stock > auxItemsCart[pos].quantity){
@@ -56,7 +56,7 @@ export default function CartContext({ children }) {
       }
     }
 
-    const restCant =(id)=> {
+    const restCount =(id)=> {
       let pos = isInCart(id)
       let auxItemsCart = [...itemsCart];
       if(auxItemsCart[pos].quantity != 1){
@@ -68,6 +68,6 @@ export default function CartContext({ children }) {
 
 
     return (
-        <MyContext.Provider value={{cartCount,itemsCart, addItem, removeItem, clear, sumCant, restCant, setCartCount}}>{children}</MyContext.Provider>
+        <MyContext.Provider value={{cartCount,itemsCart, addItem, removeItem, clear, sumCount: sumCount, restCount: restCount, setCartCount}}>{children}</MyContext.Provider>
   )
 }

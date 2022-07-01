@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import {Link} from 'react-router-dom';
 
 export default function Cart() {
-  const { cartCount,itemsCart, clear, sumCant, restCant, removeItem} = useContext(MyContext);
+  const { cartCount,itemsCart, clear, sumCount, restCount, removeItem} = useContext(MyContext);
 
   useEffect(()=> {
   }, [itemsCart]);
@@ -33,9 +33,9 @@ export default function Cart() {
       {item.quantity + " x " + item.title+ " / "}
       {"Precio unitario: $" + item.price + " / "}
       {"Precio total: $" + sumValues(item.price, item.quantity) + "  "}
-      <Button variant="primary" onClick={() => {sumCant(item.id)}}>+</Button>
+      <Button variant="primary" onClick={() => {sumCount(item.id)}}>+</Button>
       {" " + item.quantity + " "}
-      <Button variant="primary" onClick={() => {restCant(item.id)}}>-</Button>
+      <Button variant="primary" onClick={() => {restCount(item.id)}}>-</Button>
       {" "}
       <Button variant="primary" onClick={() => {removeItem(item.id)}}>Borrar</Button>
 
@@ -60,7 +60,7 @@ export default function Cart() {
           Importe total : ${returnTotalImport()}
         </Card.Footer>
         <Card.Footer className="text-muted">
-          <Button variant="primary" onClick={() => {}}>Finalizar Compra</Button>
+          <Link className="btn btn-primary" role="button" to= {`/checkout`} style={ {color : "white"}}>Finalizar compra</Link>
           <Button variant="primary" onClick={() => {clear()}}>Vaciar carrito</Button>
         </Card.Footer>
       </Card>
