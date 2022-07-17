@@ -1,33 +1,47 @@
-import NavBar from "./components/NavBar";
+import { useContext, useEffect } from 'react';
+import { Route, Routes } from "react-router-dom";
 import './App.css';
+import Cart from "./components/Cart";
+import ItemDetail from './components/ItemDetail';
 import ItemListConteiner from "./components/ItemListConteiner";
-import ItemCount from "./components/ItemCount";
-import { useEffect, useState } from "react";
-
-
+import NavBar from "./components/NavBar";
+import CartContext, { MyContext } from "./context/CartContext";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import Checkout from './components/Checkout';
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
 function App() {
-  const stock = 10;
-  var [count, setCount] = useState();
-
+  
   useEffect(()=> {
-    setCount(0)
   }, []);
 
-  function onAdd(countItems) {
-    setCount(count = count + countItems)
-  };
+  // Initialize Firebase
+  initializeApp({
+    apiKey: "AIzaSyAxFoBkhNg8Oo3r-_OdUdErvftu0br2fmQ",
+    authDomain: "ecommercebernardico.firebaseapp.com",
+    projectId: "ecommercebernardico",
+    storageBucket: "ecommercebernardico.appspot.com",
+    messagingSenderId: "258981328134",
+    appId: "1:258981328134:web:eb4c41bb060979b65d9a87"
+  });
 
   return (
-    <div>  
-      <NavBar count={count}/>
-      <div className="App">
-        <header className="App-header">
-          <ItemListConteiner getting = {"Primer prueba contador"}/>
-          <ItemCount stock = {stock} initial= {1} onAdd={onAdd}/>
-        </header>
-      </div>
-    </div>
+    <>
+    <CartContext>
+    <NavBar/>
+      <Routes>
+        <Route path= "/" element={<ItemListConteiner getting={"Bienvenide a MB Phones!"}/>}/>
+        <Route path= "/category/:id" element={<ItemListConteiner/>}/>
+        <Route path= "/item/:id" element={<ItemDetail/>}/>
+        <Route path= "/cart" element={<Cart/>}/>
+        <Route path= "/checkout" element={<Checkout/>}/>
+
+      </Routes>
+    </CartContext>
+    </>
+
     
   );
 }

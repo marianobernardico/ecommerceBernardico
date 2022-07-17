@@ -1,20 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import ItemList from './ItemList';
+import {useParams} from 'react-router-dom';
+import {collection, getDocs, getFirestore, query, where} from 'firebase/firestore';
 
 export default function ItemListConteiner({getting}) {
-
-  const [itemList, setItemList] = useState([]);
-  useEffect(() => {
-    fetch("https://629ea27e461f8173e4d6a508.mockapi.io/api/mock_items/itemsmock")
-    .then(res => res.json())
-    .then(res =>setItemList(res))
-    .catch(error => console.log(error));
-    
-  }, []);
   
+  const [itemList, setItemList] = useState([]);
+  const {id} = useParams();
+  const db = getFirestore();
+  const collections = 'products';
+  var collectionItems = null;
+
+  if(id != undefined){
+    collectionItems = query(
+      collection(db, collections),
+      where("category", "==", id))
+  }else{
+    collectionItems = collection(db, collections);
+  }
+
+  useEffect(() => {
+    getDocs(collectionItems)
+      .then((res) =>
+      {
+        setItemList(res.docs.map(doc=>({id:doc.id, ...doc.data()})))
+      });
+    
+  }, [id]);
+
+
   return (
     <>
-    <p>{getting}</p>
+    <br/>
+    <h2 style={{margin:"auto"}}>{getting}</h2><br/><br/>
+
     <ItemList items={itemList}/>
     </>
 
