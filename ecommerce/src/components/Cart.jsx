@@ -1,14 +1,12 @@
 import React from 'react'
 import {useContext} from 'react';
 import {MyContext} from '../context/CartContext';
-import ItemCount from './ItemCount';
-import {Card, Button, Col} from 'react-bootstrap';
-import Item from './Item';
+import {Card, Button} from 'react-bootstrap';
 import { useEffect } from 'react';
 import {Link} from 'react-router-dom';
 
 export default function Cart() {
-  const { cartCount,itemsCart, clear, sumCount, restCount, removeItem} = useContext(MyContext);
+  const {itemsCart, clear, sumCount, restCount, removeItem} = useContext(MyContext);
 
   useEffect(()=> {
   }, [itemsCart]);
@@ -19,7 +17,6 @@ export default function Cart() {
 
   const returnTotalImport = () => {
     var totalValue = 0;
-    var totalItems = 0;
     itemsCart.map((item)=> (
       totalValue += sumValues(item.price, item.quantity)
     ));
@@ -29,7 +26,7 @@ export default function Cart() {
   const body = <>{itemsCart.map((item)=> (
     <Card>
       <Card.Body>
-      <img src="https://http2.mlstatic.com/D_NQ_NP_2X_745035-MLA46195705760_052021-F.webp" style={{height: "50px", width: "50px"}}/>
+      <img src={item.img} style={{height: "50px", width: "50px"}}/>
       {item.quantity + " x " + item.title+ " / "}
       {"Precio unitario: $" + item.price + " / "}
       {"Precio total: $" + sumValues(item.price, item.quantity) + "  "}
@@ -38,7 +35,6 @@ export default function Cart() {
       <Button variant="primary" onClick={() => {restCount(item.id)}}>-</Button>
       {" "}
       <Button variant="primary" onClick={() => {removeItem(item.id)}}>Borrar</Button>
-
       </Card.Body>
     </Card>
   ))}</>;

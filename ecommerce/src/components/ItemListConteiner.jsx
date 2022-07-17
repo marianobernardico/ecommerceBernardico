@@ -31,7 +31,9 @@ export default function ItemListConteiner({getting}) {
 
   return (
     <>
-    <p>{getting}</p>
+    <br/>
+    <h2 style={{margin:"auto"}}>{getting}</h2><br/><br/>
+
     <ItemList items={itemList}/>
     </>
 

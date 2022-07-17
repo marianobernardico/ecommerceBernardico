@@ -7,7 +7,7 @@ import {MyContext} from '../context/CartContext';
 export default function ItemCount({item, initial}) {
 
     var [count, setCount] = useState();
-    const {addItem, sumCount, restCount} = useContext(MyContext);
+    const {addItem} = useContext(MyContext);
 
     useEffect(() => { 
         setCount(initial);

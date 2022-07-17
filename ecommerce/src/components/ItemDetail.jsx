@@ -1,5 +1,5 @@
 import React from 'react'
-import {useEffect, useState, useContext} from 'react';
+import {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import ItemCount from './ItemCount';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,7 +14,6 @@ export default function ItemDetail() {
     const db = getFirestore();
 
     const docIphone = doc( db, collection, id);
-    
 
     useEffect(() => {
 
@@ -34,11 +33,10 @@ export default function ItemDetail() {
         <Card.Header>{item?.title}</Card.Header>
         <Card.Body>
           <Card.Title> 
-            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_745035-MLA46195705760_052021-F.webp" style={{height: "300px", width: "220px"}}/>
+            <img src={item.img} style={{height: "350px", width: "350px"}}/>
           </Card.Title>
           <Card.Title>Descripcion: {item?.description}</Card.Title>
           <Card.Text>
-            Categoria: {item?.category}
             <ItemCount item= {item} initial={1}/>
           </Card.Text>
         </Card.Body>

@@ -13,8 +13,7 @@ import Checkout from './components/Checkout';
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 function App() {
-  const { cartCount, onAdd } = useContext(MyContext);
-
+  
   useEffect(()=> {
   }, []);
 
@@ -33,7 +32,7 @@ function App() {
     <CartContext>
     <NavBar/>
       <Routes>
-        <Route path= "/" element={<ItemListConteiner getting={"Bienvenide!!"}/>}/>
+        <Route path= "/" element={<ItemListConteiner getting={"Bienvenide a MB Phones!"}/>}/>
         <Route path= "/category/:id" element={<ItemListConteiner/>}/>
         <Route path= "/item/:id" element={<ItemDetail/>}/>
         <Route path= "/cart" element={<Cart/>}/>

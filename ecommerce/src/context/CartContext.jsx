@@ -8,7 +8,7 @@ export default function CartContext({ children }) {
 
     useEffect(()=> {
       itemsCart.map((item)=> (
-        cartCount += item.quantity
+        cartCount ++
       ));
       setCartCount(cartCount);
     }, [itemsCart]);

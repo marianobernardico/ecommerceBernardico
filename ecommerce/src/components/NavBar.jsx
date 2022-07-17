@@ -14,15 +14,13 @@ const NavBar = ({count}) => {
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
                 <NavDropdown title="Categorias" id="collasible-nav-dropdown">
-                    <NavDropdown.Item><Link className="nav-link" to= {`/category/${1}`} style={{color : "black"}}>Smartphone</Link></NavDropdown.Item>
-                    <NavDropdown.Item><Link className="nav-link" to= {`/category/${2}`} style={{color : "black"}}>PC</Link></NavDropdown.Item>
-                    <NavDropdown.Item><Link className="nav-link" to= {`/category/${3}`} style={{color : "black"}}>Tablets</Link></NavDropdown.Item>
+                    <NavDropdown.Item><Link className="nav-link" to= {`/category/${1}`} style={{color : "black"}}>Apple</Link></NavDropdown.Item>
+                    <NavDropdown.Item><Link className="nav-link" to= {`/category/${2}`} style={{color : "black"}}>Samsung</Link></NavDropdown.Item>
+                    <NavDropdown.Item><Link className="nav-link" to= {`/category/${3}`} style={{color : "black"}}>Otros</Link></NavDropdown.Item>
                 </NavDropdown>
                 </Nav>
                 <Nav>
-                <Nav.Link >
-                    <CartWidget count = {count}/>
-                </Nav.Link>
+                <Link className="nav-link" to= "/cart"><CartWidget count = {count}/></Link>
                 </Nav>
             </Navbar.Collapse>
             </Container>

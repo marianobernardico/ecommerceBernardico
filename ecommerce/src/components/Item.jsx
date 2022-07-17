@@ -18,12 +18,13 @@ export default function Item({item}) {
             Id del producto: {id}
         </Card.Text>
         <Card.Text>
+            <img src={item.img} style={{height: "200px", width: "200px"}}/><br/>
+            <small className="text-muted">Stock: {stock}</small>
+        </Card.Text>
+        <Card.Text>
             <Link className="btn btn-primary"  role="button" to= {`/item/${id}`} style={ {color : "white"}}>Ver detalle</Link>
         </Card.Text>
         </Card.Body>
-        <Card.Footer>
-        <small className="text-muted">Stock: {stock}</small>
-        </Card.Footer>
     </Card>
        
     </>
